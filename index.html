@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayPlus | Comunidad Oficial GemSpace (Sin Caídas)</title>
+    <style>
+        /* Paleta de colores Premium - Estilo VIP Cinema (Oro, Ámbar y Fuego) */
+        :root {
+            --bg-dark: #070503;
+            --bg-card: #151009;
+            --accent-gold: #ffb700;
+            --accent-orange: #ff6b00;
+            --accent-red: #ff2a00;
+            --text-main: #ffffff;
+            --text-muted: #a49685;
+            --success: #00ff88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efecto de iluminación ambiental cálida para simular profundidad de sala de cine */
+        .ambient-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1400px;
+            height: 700px;
+            background: radial-gradient(circle at 50% 15%, rgba(255, 183, 0, 0.18) 0%, rgba(255, 107, 0, 0.05) 50%, transparent 80%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        header {
+            border-bottom: 1px solid rgba(255, 183, 0, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(7, 5, 3, 0.85);
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .badge {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent-orange);
+            border: 1px solid rgba(255, 107, 0, 0.25);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        main {
+            flex-grow: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 60px 20px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Sección de Héroe */
+        .hero {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 50px auto;
+        }
+
+        .hero-badge-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 183, 0, 0.1);
+            color: #ffe099;
+            border: 1px solid rgba(255, 183, 0, 0.2);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.85); opacity: 0.7; }
+            50% { transform: scale(1.25); opacity: 1; }
+            100% { transform: scale(0.85); opacity: 0.7; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Contenedor del Botón de Acción Único del Héroe */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #000000;
+            text-decoration: none;
+            padding: 20px 45px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* Botón PlayPlus Principal - Dorado Cálido */
+        .btn-playplus {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-orange) 100%);
+            box-shadow: 0 12px 30px rgba(255, 183, 0, 0.3);
+            color: #070503;
+        }
+
+        .btn-playplus:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 183, 0, 0.5);
+            filter: brightness(1.15);
+        }
+
+        .btn-cta:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-cta svg {
+            fill: currentColor;
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Dashboard de Servidores de Alta Velocidad */
+        .dashboard {
+            background: rgba(21, 16, 9, 0.4);
+            border: 1px solid rgba(255, 183, 0, 0.08);
+            border-radius: 28px;
+            padding: 30px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .dash-header {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .dash-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .dash-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .server-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .server-card {
+            background: rgba(7, 5, 3, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 110px;
+        }
+
+        .server-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .server-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .server-indicator {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .indicator-online {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+        }
+
+        .server-value-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .server-val-lbl {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .server-val {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Tarjeta de Canal Aliado PlayMax (Abajo e Independiente - Estilo Violeta/Cian) */
+        .allied-banner {
+            background: linear-gradient(135deg, rgba(14, 17, 29, 0.8) 0%, rgba(20, 10, 35, 0.8) 100%);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 35px rgba(157, 78, 221, 0.08);
+        }
+
+        .allied-info h2 {
+            font-size: 1.4rem;
+            font-weight: 850;
+            color: #d8b4fe;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .allied-info h2 .allied-badge {
+            font-size: 0.7rem;
+            background: rgba(157, 78, 221, 0.15);
+            color: #d8b4fe;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            padding: 3px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .allied-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 620px;
+        }
+
+        /* Botón PlayMax - Violeta profundo */
+        .btn-playmax {
+            background: linear-gradient(135deg, #9d4edd 0%, #6200ea 100%);
+            box-shadow: 0 8px 24px rgba(157, 78, 221, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-playmax:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(157, 78, 221, 0.5);
+            filter: brightness(1.15);
+        }
+
+        .btn-playmax svg {
+            fill: currentColor;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Sección de Características */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 183, 0, 0.04);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .feature-icon-box {
+            background: rgba(255, 107, 0, 0.08);
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            fill: var(--accent-orange);
+        }
+
+        .feature-card:nth-child(2) .feature-icon-box {
+            background: rgba(255, 183, 0, 0.08);
+            fill: var(--accent-gold);
+        }
+
+        .feature-card:nth-child(3) .feature-icon-box {
+            background: rgba(255, 42, 0, 0.08);
+            fill: var(--accent-red);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 183, 0, 0.08);
+            padding: 35px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(7, 5, 3, 0.9);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Adaptabilidad en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 35px;
+            }
+            .btn-cta {
+                padding: 18px 24px;
+                font-size: 1.1rem;
+            }
+            .allied-banner {
+                padding: 24px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-playmax {
+                width: 100%;
+                justify-content: center;
+            }
+            .dashboard {
+                padding: 20px;
+            }
+            .feature-card {
+                padding: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span>PLAYPLUS</span>
+            </a>
+            <div class="badge-group">
+                <span class="badge">ANTI-DMCA</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Héroe principal con enfoque absoluto en PlayPlus -->
+        <section class="hero">
+            <div class="hero-badge-container">
+                <span class="pulse-dot"></span> Red de Canales Segura e Inmune
+            </div>
+            <h1>Películas y Series Libres de Caídas en <span>GemSpace</span></h1>
+            <p>Hemos migrado oficialmente nuestra red de entretenimiento porque <strong>Telegram borra archivos y banea canales enteros sin previo aviso por reclamos de copyright (DMCA)</strong>. En cambio, <strong>GemSpace no cede a estos reclamos</strong>, lo que nos permite ofrecerte un catálogo permanente, seguro, veloz y sin caídas.</p>
+            
+            <!-- Único Botón de Acción Principal en el Héroe (PlayPlus) -->
+            <div class="cta-container">
+                <a href="https://links.gemspace.com/join/playplus" target="_blank" class="btn-cta btn-playplus">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    Entrar al Canal de PlayPlus
+                </a>
+            </div>
+        </section>
+
+        <!-- Dashboard del estado de los servidores privados -->
+        <section class="dashboard">
+            <div class="dash-header">
+                <div class="dash-title">
+                    <span class="pulse-dot" style="background-color: var(--success); box-shadow: 0 0 10px var(--success);"></span>
+                    Servidores Activos en GemSpace
+                </div>
+                <div class="dash-subtitle">Nodos y enlaces de alta velocidad inmunes a bloqueos por copyright.</div>
+            </div>
+            <div class="server-grid">
+                <div class="server-card">
+                    <div class="server-meta">
+                        <span class="server-name">Servidor Principal Alpha</span>
+                        <span class="server-indicator indicator-online">Online</span>
+                    </div>
+                    <div class="server-value-row">
+                        <span class="server-val-lbl">Latencia</span>
+                        <span class="server-val" id="srv-a">18 ms</span>
+                    </div>
+                </div>
+                <div class="server-card">
+                    <div class="server-meta">
+                        <span class="server-name">Nodo Direct-Stream</span>
+                        <span class="server-indicator indicator-online">Online</span>
+                    </div>
+                    <div class="server-value-row">
+                        <span class="server-val-lbl">Latencia</span>
+                        <span class="server-val" id="srv-b">24 ms</span>
+                    </div>
+                </div>
+                <div class="server-card">
+                    <div class="server-meta">
+                        <span class="server-name">Servidor CDN Global</span>
+                        <span class="server-indicator indicator-online">Online</span>
+                    </div>
+                    <div class="server-value-row">
+                        <span class="server-val-lbl">Latencia</span>
+                        <span class="server-val" id="srv-c">11 ms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarjeta Informativa de Canal Aliado PlayMax (Abajo e Independiente) -->
+        <section class="allied-banner">
+            <div class="allied-info">
+                <h2>PlayMax Cinema <span class="allied-badge">Canal Aliado</span></h2>
+                <p>Nuestra plataforma hermana especializada en descargas sin límites, almacenamiento de archivos masivos de más de 2GB y estrenos constantes en la mejor calidad de audio y video.</p>
+            </div>
+            <a href="https://links.gemspace.com/join/playmax" target="_blank" class="btn-playmax">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 9l10 7 10-7-10-7zm0 18.5L4.5 15l-1.5 1 9 5 9-5-1.5-1-7.5 5.5z"/></svg>
+                Unirse a PlayMax
+            </a>
+        </section>
+
+        <!-- Sección de beneficios del canal -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+                <div>
+                    <h3>Resistencia Absoluta a DMCA</h3>
+                    <p>Mientras que Telegram borra archivos y banea canales sin avisar, GemSpace nos da la inmunidad para mantener todo el contenido siempre activo.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M13 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9l-7-7zm0 1.5L18.5 9H13V3.5zM6 20V4h6v6h6v10H6z"/></svg>
+                </div>
+                <div>
+                    <h3>Archivos de +2GB Sin Cortes</h3>
+                    <p>Sube y descarga de forma fluida películas en máxima resolución (BluRay, 4K) sin que los servidores borren las películas de la red.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                </div>
+                <div>
+                    <h3>Seguridad y Rapidez Directa</h3>
+                    <p>Cero acortadores, cero enlaces caídos y cero anuncios molestos. Descargas rápidas directo al almacenamiento de tu dispositivo.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 PlayPlus & PlayMax Network. Todos los derechos reservados.</p>
+        <p style="margin-top: 8px;">Red conectada oficialmente a la comunidad de <a href="https://links.gemspace.com/join/playplus" target="_blank">GemSpace</a>.</p>
+    </footer>
+
+    <script>
+        // Simulación ligera de pings en vivo para añadir dinamismo
+        function livePings() {
+            setInterval(() => {
+                const srvA = Math.floor(Math.random() * (22 - 14) + 14);
+                const srvB = Math.floor(Math.random() * (30 - 20) + 20);
+                const srvC = Math.floor(Math.random() * (15 - 8) + 8);
+                document.getElementById('srv-a').innerText = `${srvA} ms`;
+                document.getElementById('srv-b').innerText = `${srvB} ms`;
+                document.getElementById('srv-c').innerText = `${srvC} ms`;
+            }, 3000);
+        }
+
+        window.onload = function() {
+            livePings();
+        };
+    </script>
+</body>
+</html>
