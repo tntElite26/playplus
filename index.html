@@ -614,6 +614,7 @@
                 <button class="tab-btn" onclick="filterGenre('Comedia')">Comedia</button>
                 <button class="tab-btn" onclick="filterGenre('Drama')">Drama</button>
                 <button class="tab-btn" onclick="filterGenre('Fantasía')">Fantasía</button>
+                <button class="tab-btn" onclick="filterGenre('Terror')">Terror</button>
             </div>
 
             <div class="movies-grid" id="moviesGrid">
@@ -662,47 +663,47 @@
     </footer>
 
     <script>
-        // CATÁLOGO DE PELÍCULAS CON TUS URLs DE TMDB
+        // CATÁLOGO DE PELÍCULAS CON TUS PORTADAS DE TMDB ACTUALIZADAS (2025-2026)
         const movies = [
             {
-                title: "Corazones de acero",
-                genre: "Acción",
-                image: "https://image.tmdb.org/t/p/original/kbtH5G8L8REzy72LkLmKYoBVaGv.jpg" 
-            },
-            {
-                title: "Kick-Ass",
-                genre: "Acción",
-                image: "https://image.tmdb.org/t/p/original/dyYP52hnVzioCxLSheogZBX0vXv.jpg"
-            },
-            {
-                title: "La Red Social",
-                genre: "Drama",
-                image: "https://image.tmdb.org/t/p/original/2GtDmIdxkJ5NZG97yhJQtM8Wn1H.jpg"
-            },
-            {
-                title: "Jurassic World: Renacimiento",
+                title: "Proyecto Fin del Mundo (2026)",
                 genre: "Ciencia Ficción",
-                image: "https://image.tmdb.org/t/p/original/v49ceVcpW4Vj0tveTWlzrRdsFf4.jpg"
+                image: "https://image.tmdb.org/t/p/original/7OCaLf0Gc7L5a3jIPfELR3tuzXV.jpg" 
             },
             {
-                title: "Ted",
-                genre: "Comedia",
-                image: "https://image.tmdb.org/t/p/original/omSxWgGq93B3bCWNAssd4YZECUl.jpg"
-            },
-            {
-                title: "Tracers: Al Límite",
-                genre: "Acción",
-                image: "https://image.tmdb.org/t/p/original/yHg1JMq3W3cK7NjLKHRPCz2BQWD.jpg"
-            },
-            {
-                title: "Maléfica",
-                genre: "Fantasía",
-                image: "https://image.tmdb.org/t/p/original/brwFWg2jiK3cbfaE0reApXP51pX.jpg"
-            },
-            {
-                title: "Rompe el paso",
+                title: "Buen Camino (2025)",
                 genre: "Drama",
-                image: "https://image.tmdb.org/t/p/original/oHCJuCVuBtq6rmZb2kO7YF9er8W.jpg"
+                image: "https://image.tmdb.org/t/p/original/xqnLxbA4Ak4kew3CrcFLTXksh4a.jpg"
+            },
+            {
+                title: "Socias por accidente (2026)",
+                genre: "Comedia",
+                image: "https://image.tmdb.org/t/p/original/sr1Yoj6XLPTWYcbDoBy67xivW4I.jpg"
+            },
+            {
+                title: "La venganza de la casa del Lago (2009)",
+                genre: "Terror",
+                image: "https://image.tmdb.org/t/p/original/c3cqOOG7nOUkBIRarg3OTeuuKg9.jpg"
+            },
+            {
+                title: "Sangre asesina (2026)",
+                genre: "Terror",
+                image: "https://image.tmdb.org/t/p/original/16TvbhCP8CfiGEbxcbtQLYWO6WG.jpg"
+            },
+            {
+                title: "Super Mario Galaxy: La película (2026)",
+                genre: "Fantasía",
+                image: "https://image.tmdb.org/t/p/original/4Js0gYWxuvTN6b8iAaSF1cSQzBs.jpg"
+            },
+            {
+                title: "El diablo viste a la moda 2 (2026)",
+                genre: "Drama",
+                image: "https://image.tmdb.org/t/p/original/rdvPsRItlhErfKF8Y0f0wjnxUzz.jpg"
+            },
+            {
+                title: "Michael (2026)",
+                genre: "Drama",
+                image: "https://image.tmdb.org/t/p/original/mB3zisIw3bsQcoDSnvMPAQhjrTM.jpg"
             }
         ];
 
@@ -726,7 +727,7 @@
                         <span class="movie-tag">${movie.genre}</span>
                     </div>
                     <div class="movie-info">
-                        <div class="movie-card-title">${movie.title}</div>
+                        <div class="movie-card-title" title="${movie.title}">${movie.title}</div>
                     </div>
                 `;
                 grid.appendChild(card);
